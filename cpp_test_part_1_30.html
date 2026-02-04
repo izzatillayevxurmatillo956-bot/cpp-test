@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<title>C++ Test 1 (30 savol)</title>
+<style>
+body{font-family:Arial;background:#f2f2f2;padding:20px}
+.box{background:#fff;max-width:800px;margin:auto;padding:20px;border-radius:10px}
+button{padding:10px;width:100%;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="box">
+<h2 id="savol"></h2>
+<div id="variantlar"></div>
+<button onclick="keyingi()">Keyingi</button>
+<h3 id="natija"></h3>
+</div>
+<script>
+const testlar = [{"q": "cout<<7%2; natija?", "variantlar": ["1", "0", "2", "3"], "togri": 0}, {"q": "cout<<10%2; natija?", "variantlar": ["0", "1", "2", "3"], "togri": 0}, {"q": "cout<<13%2; natija?", "variantlar": ["1", "0", "2", "3"], "togri": 0}, {"q": "cout<<15%2; natija?", "variantlar": ["1", "0", "2", "3"], "togri": 0}, {"q": "cout<<5%2; natija?", "variantlar": ["1", "0", "2", "3"], "togri": 0}, {"q": "cout<<17%2; natija?", "variantlar": ["1", "0", "2", "3"], "togri": 0}, {"q": "cout<<19%2; natija?", "variantlar": ["1", "0", "2", "3"], "togri": 0}, {"q": "cout<<21%2; natija?", "variantlar": ["1", "0", "2", "3"], "togri": 0}, {"q": "cout<<25%2; natija?", "variantlar": ["1", "0", "2", "3"], "togri": 0}, {"q": "cout<<11%3; natija?", "variantlar": ["2", "0", "1", "3"], "togri": 0}, {"q": "if(5<6) cout<<\"true\"; else cout<<\"false\";", "variantlar": ["true", "false", "1", "0"], "togri": 0}, {"q": "if(5<6) cout<<\"false\"; else cout<<\"true\";", "variantlar": ["false", "true", "1", "0"], "togri": 0}, {"q": "if(10>11) cout<<\"true\"; else cout<<\"false\";", "variantlar": ["false", "true", "1", "0"], "togri": 0}, {"q": "if(10>11) cout<<\"false\"; else cout<<\"true\";", "variantlar": ["true", "false", "1", "0"], "togri": 0}, {"q": "if(true) cout<<\"Rost\"; else cout<<\"Yolg'on\";", "variantlar": ["Rost", "Yolg'on", "true", "false"], "togri": 0}, {"q": "if(false) cout<<\"Rost\"; else cout<<\"Yolg'on\";", "variantlar": ["Yolg'on", "Rost", "true", "false"], "togri": 0}, {"q": "if(1==1) cout<<\"Rost\"; else cout<<\"Yolg'on\";", "variantlar": ["Rost", "Yolg'on", "true", "false"], "togri": 0}, {"q": "if(1!=1) cout<<\"Rost\"; else cout<<\"Yolg'on\";", "variantlar": ["Yolg'on", "Rost", "true", "false"], "togri": 0}, {"q": "if(true) cout<<\"true\"; else cout<<\"false\";", "variantlar": ["true", "false", "1", "0"], "togri": 0}, {"q": "if(false) cout<<\"true\"; else cout<<\"false\";", "variantlar": ["false", "true", "1", "0"], "togri": 0}, {"q": "int a=1, b=2; (a<b)?cout<<a:cout<<b;", "variantlar": ["1", "2", "0", "-1"], "togri": 0}, {"q": "int a=2, b=3; (a<b)?cout<<a:cout<<b;", "variantlar": ["2", "3", "0", "-1"], "togri": 0}, {"q": "int a=3, b=4; (a<b)?cout<<a:cout<<b;", "variantlar": ["3", "4", "0", "-1"], "togri": 0}, {"q": "int a=4, b=5; (a<b)?cout<<a:cout<<b;", "variantlar": ["4", "5", "0", "-1"], "togri": 0}, {"q": "int a=5, b=6; (a<b)?cout<<a:cout<<b;", "variantlar": ["5", "6", "0", "-1"], "togri": 0}, {"q": "int a=6, b=7; (a<b)?cout<<a:cout<<b;", "variantlar": ["6", "7", "0", "-1"], "togri": 0}, {"q": "int a=7, b=8; (a<b)?cout<<a:cout<<b;", "variantlar": ["7", "8", "0", "-1"], "togri": 0}, {"q": "int a=8, b=9; (a<b)?cout<<a:cout<<b;", "variantlar": ["8", "9", "0", "-1"], "togri": 0}, {"q": "int a=9, b=10; (a<b)?cout<<a:cout<<b;", "variantlar": ["9", "10", "0", "-1"], "togri": 0}, {"q": "int a=10, b=11; (a<b)?cout<<a:cout<<b;", "variantlar": ["10", "11", "0", "-1"], "togri": 0}];
+let i=0, ball=0;
+function yukla(){
+  savol.innerText=(i+1)+". "+testlar[i].q;
+  variantlar.innerHTML=testlar[i].variantlar.map((v,j)=>
+    `<label><input type="radio" name="j" value="${j}"> ${["A","B","C","D"][j]}) ${v}</label><br>`).join("");
+}
+function keyingi(){
+  const t=document.querySelector('input[name=j]:checked');
+  if(!t) return alert("Javob tanlang");
+  if(+t.value===testlar[i].togri) ball++;
+  i++;
+  if(i<testlar.length) yukla();
+  else document.querySelector('.box').innerHTML=`<h2>Test tugadi</h2><h3>Natija: ${ball} / ${testlar.length}</h3>`;
+}
+yukla();
+</script>
+</body>
+</html>

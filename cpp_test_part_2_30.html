@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<title>C++ Test 2 (30 savol)</title>
+<style>
+body{font-family:Arial;background:#f2f2f2;padding:20px}
+.box{background:#fff;max-width:800px;margin:auto;padding:20px;border-radius:10px}
+button{padding:10px;width:100%;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="box">
+<h2 id="savol"></h2>
+<div id="variantlar"></div>
+<button onclick="keyingi()">Keyingi</button>
+<h3 id="natija"></h3>
+</div>
+<script>
+const testlar = [{"q": "int a=1, b=2; (a<b)?cout<<a:cout<<b;", "variantlar": ["1", "2", "0", "-1"], "togri": 0}, {"q": "int a=2, b=3; (a<b)?cout<<a:cout<<b;", "variantlar": ["2", "3", "0", "-1"], "togri": 0}, {"q": "int a=3, b=4; (a<b)?cout<<a:cout<<b;", "variantlar": ["3", "4", "0", "-1"], "togri": 0}, {"q": "int a=4, b=5; (a<b)?cout<<a:cout<<b;", "variantlar": ["4", "5", "0", "-1"], "togri": 0}, {"q": "int a=5, b=6; (a<b)?cout<<a:cout<<b;", "variantlar": ["5", "6", "0", "-1"], "togri": 0}, {"q": "int a=6, b=7; (a<b)?cout<<a:cout<<b;", "variantlar": ["6", "7", "0", "-1"], "togri": 0}, {"q": "int a=7, b=8; (a<b)?cout<<a:cout<<b;", "variantlar": ["7", "8", "0", "-1"], "togri": 0}, {"q": "int a=8, b=9; (a<b)?cout<<a:cout<<b;", "variantlar": ["8", "9", "0", "-1"], "togri": 0}, {"q": "int a=9, b=10; (a<b)?cout<<a:cout<<b;", "variantlar": ["9", "10", "0", "-1"], "togri": 0}, {"q": "int a=10, b=11; (a<b)?cout<<a:cout<<b;", "variantlar": ["10", "11", "0", "-1"], "togri": 0}, {"q": "int n=1; s=0; for(i=1;i<=n;i++) s+=i; cout<<s;", "variantlar": ["1", "1", "1", "0"], "togri": 0}, {"q": "int n=2; s=0; for(i=1;i<=n;i++) s+=i; cout<<s;", "variantlar": ["3", "2", "4", "0"], "togri": 0}, {"q": "int n=3; s=0; for(i=1;i<=n;i++) s+=i; cout<<s;", "variantlar": ["6", "3", "9", "0"], "togri": 0}, {"q": "int n=4; s=0; for(i=1;i<=n;i++) s+=i; cout<<s;", "variantlar": ["10", "4", "16", "0"], "togri": 0}, {"q": "int n=5; s=0; for(i=1;i<=n;i++) s+=i; cout<<s;", "variantlar": ["15", "5", "25", "0"], "togri": 0}, {"q": "int n=6; s=0; for(i=1;i<=n;i++) s+=i; cout<<s;", "variantlar": ["21", "6", "36", "0"], "togri": 0}, {"q": "int n=7; s=0; for(i=1;i<=n;i++) s+=i; cout<<s;", "variantlar": ["28", "7", "49", "0"], "togri": 0}, {"q": "int n=8; s=0; for(i=1;i<=n;i++) s+=i; cout<<s;", "variantlar": ["36", "8", "64", "0"], "togri": 0}, {"q": "int n=9; s=0; for(i=1;i<=n;i++) s+=i; cout<<s;", "variantlar": ["45", "9", "81", "0"], "togri": 0}, {"q": "int n=10; s=0; for(i=1;i<=n;i++) s+=i; cout<<s;", "variantlar": ["55", "10", "100", "0"], "togri": 0}, {"q": "int n=1; p=1; for(i=1;i<=n;i++) p*=i; cout<<p;", "variantlar": ["1", "1", "0", "1"], "togri": 0}, {"q": "int n=2; p=1; for(i=1;i<=n;i++) p*=i; cout<<p;", "variantlar": ["2", "2", "2", "1"], "togri": 0}, {"q": "int n=3; p=1; for(i=1;i<=n;i++) p*=i; cout<<p;", "variantlar": ["6", "3", "6", "1"], "togri": 0}, {"q": "int n=4; p=1; for(i=1;i<=n;i++) p*=i; cout<<p;", "variantlar": ["24", "4", "12", "1"], "togri": 0}, {"q": "int n=5; p=1; for(i=1;i<=n;i++) p*=i; cout<<p;", "variantlar": ["120", "5", "20", "1"], "togri": 0}, {"q": "int n=6; p=1; for(i=1;i<=n;i++) p*=i; cout<<p;", "variantlar": ["720", "6", "30", "1"], "togri": 0}, {"q": "int n=7; p=1; for(i=1;i<=n;i++) p*=i; cout<<p;", "variantlar": ["5040", "7", "42", "1"], "togri": 0}, {"q": "int n=8; p=1; for(i=1;i<=n;i++) p*=i; cout<<p;", "variantlar": ["40320", "8", "56", "1"], "togri": 0}, {"q": "int n=9; p=1; for(i=1;i<=n;i++) p*=i; cout<<p;", "variantlar": ["362880", "9", "72", "1"], "togri": 0}, {"q": "int n=10; p=1; for(i=1;i<=n;i++) p*=i; cout<<p;", "variantlar": ["3628800", "10", "90", "1"], "togri": 0}];
+let i=0, ball=0;
+function yukla(){
+  savol.innerText=(i+1)+". "+testlar[i].q;
+  variantlar.innerHTML=testlar[i].variantlar.map((v,j)=>
+    `<label><input type="radio" name="j" value="${j}"> ${["A","B","C","D"][j]}) ${v}</label><br>`).join("");
+}
+function keyingi(){
+  const t=document.querySelector('input[name=j]:checked');
+  if(!t) return alert("Javob tanlang");
+  if(+t.value===testlar[i].togri) ball++;
+  i++;
+  if(i<testlar.length) yukla();
+  else document.querySelector('.box').innerHTML=`<h2>Test tugadi</h2><h3>Natija: ${ball} / ${testlar.length}</h3>`;
+}
+yukla();
+</script>
+</body>
+</html>

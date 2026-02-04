@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<title>C++ Test 3 (30 savol)</title>
+<style>
+body{font-family:Arial;background:#f2f2f2;padding:20px}
+.box{background:#fff;max-width:800px;margin:auto;padding:20px;border-radius:10px}
+button{padding:10px;width:100%;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="box">
+<h2 id="savol"></h2>
+<div id="variantlar"></div>
+<button onclick="keyingi()">Keyingi</button>
+<h3 id="natija"></h3>
+</div>
+<script>
+const testlar = [{"q": "cout<<boolalpha<<(false||false);", "variantlar": ["false", "true", "0", "1"], "togri": 0}, {"q": "cout<<boolalpha<<(false||true);", "variantlar": ["true", "false", "0", "1"], "togri": 0}, {"q": "cout<<boolalpha<<(true||false);", "variantlar": ["true", "false", "0", "1"], "togri": 0}, {"q": "cout<<boolalpha<<(true&&true);", "variantlar": ["true", "false", "0", "1"], "togri": 0}, {"q": "cout<<boolalpha<<(true&&false);", "variantlar": ["false", "true", "0", "1"], "togri": 0}, {"q": "switch(n=3){case 3:cout<<\"Uch\";}", "variantlar": ["Uch", "Ikki", "To'rt", "Xato"], "togri": 0}, {"q": "switch(kun=3){case 3:cout<<\"Chorshanba\";}", "variantlar": ["Chorshanba", "Seshanba", "Payshanba", "Xato"], "togri": 0}, {"q": "switch(n=2){case 1:cout<<\"Bir\";case 2:cout<<\"Ikki\";}", "variantlar": ["Ikki", "Bir", "Uch", "Xato"], "togri": 0}, {"q": "switch(n=5){case 1:cout<<\"A\";default:cout<<\"Xato\";}", "variantlar": ["Xato", "A", "B", "C"], "togri": 0}, {"q": "cout<<5%3;", "variantlar": ["2", "1", "0", "3"], "togri": 0}];
+let i=0, ball=0;
+function yukla(){
+  savol.innerText=(i+1)+". "+testlar[i].q;
+  variantlar.innerHTML=testlar[i].variantlar.map((v,j)=>
+    `<label><input type="radio" name="j" value="${j}"> ${["A","B","C","D"][j]}) ${v}</label><br>`).join("");
+}
+function keyingi(){
+  const t=document.querySelector('input[name=j]:checked');
+  if(!t) return alert("Javob tanlang");
+  if(+t.value===testlar[i].togri) ball++;
+  i++;
+  if(i<testlar.length) yukla();
+  else document.querySelector('.box').innerHTML=`<h2>Test tugadi</h2><h3>Natija: ${ball} / ${testlar.length}</h3>`;
+}
+yukla();
+</script>
+</body>
+</html>
